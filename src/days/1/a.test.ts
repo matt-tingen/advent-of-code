@@ -1,4 +1,4 @@
-import countIncreases from './a';
+import { countIncreases } from './a';
 
 const test = createMacro(
   (values: number[], expected: number) => {

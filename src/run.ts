@@ -15,12 +15,32 @@ const getInput = async (dir: string) => {
   return buffer.toString().trim();
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getSoleExport = (module: any) => {
+  const keys = Object.keys(module);
+
+  if (keys.length === 0) {
+    throw new Error('Expected a single export, found none');
+  }
+
+  if (keys.length > 1) {
+    throw new Error(`Expected a single export, found: ${keys.join(',')}`);
+  }
+
+  return module[keys[0]];
+};
+
 const getParser = (dir: string): ((input: string) => unknown) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let module: any;
+
   try {
-    return require(path.join(dir, 'parse.ts')).default;
+    module = require(path.join(dir, 'parse.ts'));
   } catch (e) {
     return (input) => input;
   }
+
+  return getSoleExport(module);
 };
 
 const isDirectory = async (source: string) => {
@@ -87,7 +107,7 @@ export const getLatestChallenge = async (dayArg?: string, partArg?: string) => {
 export const getSolver = async (day: string | number, part: string) => {
   const dayDir = path.join(DAYS_DIR, day.toString());
   const partPath = path.join(dayDir, part);
-  const solve = require(partPath).default as Solver;
+  const solve = getSoleExport(require(partPath)) as Solver;
   const input = await getParsedInput(dayDir);
 
   return () => solve(input);

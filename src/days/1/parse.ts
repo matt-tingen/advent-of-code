@@ -1,1 +1,1 @@
-export { parseIntLines as default } from '../../util/parsers';
+export { parseIntLines } from '../../util/parsers';

@@ -5,8 +5,8 @@
 For a given day `n`, create a folder `src/days/<n>` with the following files:
 
 - `input.txt` containing your user-specific puzzle input
-- `parse.ts` which has a named export `parse` of the type `(input: string) => T` where T is any type which makes the input easier to work with e.g. `number[]`
-- `a.ts` which has a name export `solve` of the type `(input: T) => string | number` where `T` is the type returned by the parse function and the return value is the result for the first puzzle of the day
+- `parse.ts` which has a single export of the type `(input: string) => T` where T is any type which makes the input easier to work with e.g. `number[]`
+- `a.ts` which has a single export of the type `(input: T) => string | number` where `T` is the type returned by the parse function and the return value is the result for the first puzzle of the day
 - `b.ts` which is the same as `a.ts` but for the second puzzle of the day
 
 The `parse.ts` file is optional. If omitted, the functions exported by `a.ts` and `b.ts` will be passed the original input as a `string`.
