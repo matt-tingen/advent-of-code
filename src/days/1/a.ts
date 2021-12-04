@@ -1,5 +1,3 @@
-export const countIncreases = (values: number[]) =>
-  values.reduce(
-    (count, value, i) => (i && value > values[i - 1] ? count + 1 : count),
-    0,
-  );
+import { countSlidingIncreases } from './countSlidingIncreases';
+
+export const a = (values: number[]) => countSlidingIncreases(values, 1);
