@@ -1,11 +1,9 @@
-import { Vector } from './types';
+import { Direction, Move } from './types';
 
-export const parse = (text: string): Vector[] =>
+export const parse = (text: string): Move[] =>
   text.split('\n').map((line) => {
-    const [direction, rawDistance] = line.split(' ');
-    const distance = parseInt(rawDistance, 10);
-    const x = direction === 'forward' ? distance : 0;
-    const y = { up: -distance, down: distance }[direction] ?? 0;
+    const [direction, rawValue] = line.split(' ');
+    const value = parseInt(rawValue, 10);
 
-    return { x, y };
+    return { direction: direction as Direction, value };
   });
