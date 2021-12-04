@@ -1,2 +1,5 @@
 export default (values: number[]) =>
-  values.reduce((acc, value) => acc + value, 0);
+  values.reduce(
+    (count, value, i) => (i && value > values[i - 1] ? count + 1 : count),
+    0,
+  );
