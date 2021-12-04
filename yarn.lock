@@ -1192,10 +1192,10 @@
     eslint-plugin-testing-library "^4.5.0"
     prettier "^2.3.0"
 
-"@matt-tingen/jest-macros@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@matt-tingen/jest-macros/-/jest-macros-0.1.1.tgz#4b26ea848186d210462f0eb6a2e1ef84fb463146"
-  integrity sha512-SVtsuIL6h1kERQSWyAMTGLHSB4ZGNMaUeqTVURraCyzhxKTTCj4sUWBWnCShK4lO/9YvagtU6KflTsvVL41QXQ==
+"@matt-tingen/jest-macros@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@matt-tingen/jest-macros/-/jest-macros-0.1.2.tgz#fe6f75a4855a38d45dc06057fc89129797c5c1f0"
+  integrity sha512-pBg0nAgPi5uXEzfIHHQ2GHvpNZTVAQ9/YBdNSO4QZtOUnww7qeBdeJeeAQrw/7AqYocbW9Q8BXMx0mIC+iRUJw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

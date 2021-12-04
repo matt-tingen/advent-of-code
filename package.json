@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
     "@matt-tingen/eslint-config": "^0.3.2",
-    "@matt-tingen/jest-macros": "^0.1.1",
+    "@matt-tingen/jest-macros": "^0.1.2",
     "@types/jest": "^27.0.3",
     "@types/lodash": "^4.14.177",
     "@types/node": "^16.11.11",

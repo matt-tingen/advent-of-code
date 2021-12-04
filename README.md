@@ -13,6 +13,8 @@ The `parse.ts` file is optional. If omitted, the functions exported by `a.ts` an
 
 You may create any other helper files in the day's folder as necessary, including `*.test.ts` files.
 
+Once you've completed a puzzle successfully, add it to `challenges.test.ts` to create a snapshot test using your custom input.
+
 ## Commands
 
 To run tests, use `yarn test`.
