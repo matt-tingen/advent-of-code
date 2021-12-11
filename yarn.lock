@@ -1172,10 +1172,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@matt-tingen/eslint-config@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@matt-tingen/eslint-config/-/eslint-config-0.3.2.tgz#5e7de1bb981554402342d4d60b41114619cef883"
-  integrity sha512-CP6ngbHK6TNgC9aGlzYmqzidsUQk+MskqHoo1tc/lAtVhbvyXakEa96wqX6edSQjkOupjc2oqE/YCBsz5BmWbA==
+"@matt-tingen/eslint-config@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@matt-tingen/eslint-config/-/eslint-config-0.3.3.tgz#03bccbfc1812a1688e3a31bf2d339ccb06889511"
+  integrity sha512-R9Zpn7LATF4t9leBMK3YdLfWP4haiJYou+u9QlnnFVNPK1apT3xijJ8srFihsRSBegC+Om+nXPNX+wTgLrcBPQ==
   dependencies:
     "@rushstack/eslint-patch" "^1.0.6"
     "@typescript-eslint/eslint-plugin" "^4.24.0"
