@@ -1,27 +1,34 @@
+import { countBy, range, sum } from 'lodash';
+
 const CYCLE_LENGTH = 7;
 const CYCLE_DELAY = 2;
 const CYCLE_RESET_VALUE = CYCLE_LENGTH - 1;
 const CYCLE_INITIAL_VALUE = CYCLE_RESET_VALUE + CYCLE_DELAY;
 
 export const simulateLanternfish = (
-  timers: number[],
-  days: number,
-): number[] => {
-  if (days === 0) return timers;
+  initialTimers: number[],
+  totalDays: number,
+): number => {
+  let timerCounts = countBy(initialTimers);
 
-  let newFish = 0;
-  const newTimers = timers.map((timer) => {
-    let newTimer = timer - 1;
+  for (let days = totalDays; days > 0; days--) {
+    const newTimerCounts = Object.fromEntries(
+      range(CYCLE_INITIAL_VALUE + 1).map((value) => [value, 0]),
+    );
 
-    if (newTimer < 0) {
-      newTimer = CYCLE_RESET_VALUE;
-      newFish++;
+    for (let timer = 0; timer <= CYCLE_INITIAL_VALUE; timer++) {
+      let newTimer = timer - 1;
+
+      if (newTimer < 0) {
+        newTimer = CYCLE_RESET_VALUE;
+      }
+
+      newTimerCounts[newTimer] += timerCounts[timer] ?? 0;
     }
 
-    return newTimer;
-  });
+    newTimerCounts[CYCLE_INITIAL_VALUE] = timerCounts[0] ?? 0;
+    timerCounts = newTimerCounts;
+  }
 
-  newTimers.push(...Array<number>(newFish).fill(CYCLE_INITIAL_VALUE));
-
-  return simulateLanternfish(newTimers, days - 1);
+  return sum(Object.values(timerCounts));
 };
