@@ -1,5 +1,12 @@
 import { VentCoordinates } from './parse';
 
+const getIncrement = (start: number, end: number) => {
+  if (end > start) return 1;
+  if (end < start) return -1;
+
+  return 0;
+};
+
 export const buildVentMap = (ventCoords: VentCoordinates[]) => {
   const map: number[][] = [];
 
@@ -12,20 +19,15 @@ export const buildVentMap = (ventCoords: VentCoordinates[]) => {
   };
 
   ventCoords.forEach(([[x1, y1], [x2, y2]]) => {
-    if (x1 === x2) {
-      const x = x1;
+    const xInc = getIncrement(x1, x2);
+    const yInc = getIncrement(y1, y2);
 
-      for (let y = Math.min(y1, y2); y <= Math.max(y1, y2); y++) {
-        addVent(x, y);
-      }
-    }
-
-    if (y1 === y2) {
-      const y = y1;
-
-      for (let x = Math.min(x1, x2); x <= Math.max(x1, x2); x++) {
-        addVent(x, y);
-      }
+    for (
+      let x = x1, y = y1;
+      y !== y2 + yInc || x !== x2 + xInc;
+      x += xInc, y += yInc
+    ) {
+      addVent(x, y);
     }
   });
 
