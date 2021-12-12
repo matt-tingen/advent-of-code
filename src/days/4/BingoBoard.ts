@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { sum } from 'lodash';
+import { Immutable } from '../../util/Immutable';
 import { map2d } from '../../util/map2d';
 
 export class BingoBoard {
@@ -8,7 +9,7 @@ export class BingoBoard {
   private marks: boolean[][];
   private score: number | null = null;
 
-  constructor(public values: readonly (readonly number[])[]) {
+  constructor(public values: Immutable<number[][]>) {
     this.marks = map2d(values, () => false);
     this.valueCoords = new Map(
       map2d(values, (value, r, c) => [value, [r, c]] as const).flat(),
