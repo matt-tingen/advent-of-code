@@ -1,17 +1,17 @@
 import { getCell } from './getCell';
+import { east, north, south, west } from './move';
 import { Coords, Grid } from './types';
 
 const isNadir = (grid: Grid, coords: Coords) => {
   const get = (coords: Coords) => getCell(grid, coords) ?? Infinity;
 
   const value = get(coords);
-  const [r, c] = coords;
 
   return (
-    value < get([r - 1, c]) &&
-    value < get([r + 1, c]) &&
-    value < get([r, c - 1]) &&
-    value < get([r, c + 1])
+    value < get(north(coords)) &&
+    value < get(east(coords)) &&
+    value < get(south(coords)) &&
+    value < get(west(coords))
   );
 };
 
