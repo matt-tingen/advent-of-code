@@ -1,9 +1,14 @@
-import { sum } from 'lodash';
-import { countDigits } from './countDigits';
+import { sumBy } from 'lodash';
+import { decodeEntry } from './decodeEntry';
 import { DisplayEntry } from './parse';
 
-export const a = (entries: DisplayEntry[]) => {
-  const counts = countDigits(entries);
+const digitsToCount = new Set([1, 4, 7, 8]);
 
-  return sum([1, 4, 7, 8].map((i) => counts[i]));
+export const a = (entries: DisplayEntry[]) => {
+  const decodedOutputs = entries.map(decodeEntry);
+
+  return sumBy(
+    decodedOutputs,
+    (digits) => digits.filter((d) => digitsToCount.has(d)).length,
+  );
 };
