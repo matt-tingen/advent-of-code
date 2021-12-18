@@ -1,3 +1,3 @@
 import { getElementCountDifference } from './getElementCountDifference';
 
-export const a = getElementCountDifference(10);
+export const b = getElementCountDifference(40);

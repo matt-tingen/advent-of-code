@@ -1,26 +1,30 @@
+import { cloneDeep } from 'lodash';
 import { PolymerizationRules } from './parse';
+import { PolymerSummary } from './summarizePolymer';
 
-interface Insertion {
-  element: string;
-  i: number;
-}
+export const polymerize = (
+  polymer: PolymerSummary,
+  rules: PolymerizationRules,
+): PolymerSummary => {
+  const newPolymer = cloneDeep(polymer);
 
-export const polymerize = (polymer: string, rules: PolymerizationRules) => {
-  const elements = polymer.split('');
-  const insertions: Insertion[] = [];
+  Object.entries(rules).forEach(([pair, result]) => {
+    const insertionCount = polymer.pairCounts[pair] ?? 0;
 
-  for (let i = 0; i < elements.length - 1; i++) {
-    const pair = elements[i] + elements[i + 1];
-    const result = rules[pair];
+    if (insertionCount) {
+      newPolymer.elementCounts[result] =
+        (newPolymer.elementCounts[result] ?? 0) + insertionCount;
 
-    if (result) {
-      insertions.push({ element: result, i: i + insertions.length + 1 });
+      newPolymer.pairCounts[pair] -= insertionCount;
+
+      const newPairs = [pair[0] + result, result + pair[1]];
+
+      newPairs.forEach((newPair) => {
+        newPolymer.pairCounts[newPair] =
+          (newPolymer.pairCounts[newPair] ?? 0) + insertionCount;
+      });
     }
-  }
-
-  insertions.forEach(({ element, i }) => {
-    elements.splice(i, 0, element);
   });
 
-  return elements.join('');
+  return newPolymer;
 };

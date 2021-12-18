@@ -1,4 +1,4 @@
-export type PolymerizationRules = Partial<Record<string, string>>;
+export type PolymerizationRules = Record<string, string>;
 export interface PolymerizationInstructions {
   template: string;
   rules: PolymerizationRules;
