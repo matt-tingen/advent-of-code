@@ -29,15 +29,18 @@ export class CorruptChunkParseError extends ChunkParseError {
 }
 
 export class IncompleteChunkParseError extends ChunkParseError {
-  constructor() {
+  constructor(public missingChars: string) {
     super('Unable to parse incomplete chunk');
   }
 }
+
+class IncompletePropagationError extends Error {}
 
 export const parseChunks = (input: string): Chunk[] => {
   const chars = input.split('');
   const take = () => chars.shift();
   const peek = () => chars[0] as string | undefined;
+  let missingChars = '';
 
   const parseChunk = (initialChar: string): Chunk => {
     let char: string | undefined = initialChar;
@@ -51,10 +54,18 @@ export const parseChunks = (input: string): Chunk[] => {
 
     do {
       char = take();
-      if (!char) throw new IncompleteChunkParseError();
+
+      if (!char) {
+        missingChars += end;
+        throw new IncompletePropagationError();
+      }
 
       if (char !== end) {
-        chunk.children.push(parseChunk(char));
+        try {
+          chunk.children.push(parseChunk(char));
+        } catch (error) {
+          if (!(error instanceof IncompletePropagationError)) throw error;
+        }
       }
     } while (char !== end);
 
@@ -64,8 +75,14 @@ export const parseChunks = (input: string): Chunk[] => {
   const chunks: Chunk[] = [];
 
   while (peek()) {
-    chunks.push(parseChunk(take()!));
+    try {
+      chunks.push(parseChunk(take()!));
+    } catch (error) {
+      if (!(error instanceof IncompletePropagationError)) throw error;
+    }
   }
+
+  if (missingChars) throw new IncompleteChunkParseError(missingChars);
 
   return chunks;
 };

@@ -1,11 +1,5 @@
 import { castArray, partial } from 'lodash';
-import {
-  Chunk,
-  ChunkType,
-  CorruptChunkParseError,
-  IncompleteChunkParseError,
-  parseChunks,
-} from './parseChunks';
+import { Chunk, ChunkType, parseChunks } from './parseChunks';
 
 const testParse = createMacro(
   (input: string, expected: Chunk | Chunk[]) => {
@@ -15,8 +9,10 @@ const testParse = createMacro(
 );
 
 const testIncomplete = createMacro(
-  (input: string) => {
-    expect(() => parseChunks(input)).toThrow(IncompleteChunkParseError);
+  (input: string, missingChars: string) => {
+    expect(() => parseChunks(input)).toThrow(
+      expect.objectContaining({ missingChars }),
+    );
   },
   (provided, input) => `considers ${input || provided} incomplete`,
 );
@@ -57,10 +53,10 @@ run(
   paren(paren(paren(paren(paren(paren(paren(paren(paren(paren()))))))))),
 );
 
-run(testIncomplete, '(');
-run(testIncomplete, '[{}');
-run(testIncomplete, '<[(');
-run(testIncomplete, '[]<>{');
+run(testIncomplete, '(', ')');
+run(testIncomplete, '[{}', ']');
+run(testIncomplete, '<[(', ')]>');
+run(testIncomplete, '[]<>{', '}');
 
 run(testCorrupt, '(]', ']');
 run(testCorrupt, '{()()()>', '>');
