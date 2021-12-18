@@ -1,8 +1,8 @@
 import { sortBy } from 'lodash';
+import { Grid } from '../../util/grid';
 import { product } from '../../util/product';
 import { findBasin } from './findBasin';
 import { findNadirs } from './findNadirs';
-import { Grid } from './types';
 
 export const b = (grid: Grid) => {
   const nadirs = findNadirs(grid);

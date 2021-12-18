@@ -1,6 +1,12 @@
-import { getCell } from './getCell';
-import { east, north, south, west } from './move';
-import { Coords, Grid } from './types';
+import {
+  Coords,
+  east,
+  getCell,
+  Grid,
+  north,
+  south,
+  west,
+} from '../../util/grid';
 
 const isNadir = (grid: Grid, coords: Coords) => {
   const get = (coords: Coords) => getCell(grid, coords) ?? Infinity;

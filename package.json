@@ -24,6 +24,7 @@
     "clipboardy": "^2",
     "eslint": "^7",
     "jest": "^27.4.3",
+    "jest-extended": "^1.2.0",
     "lodash": "^4.17.21",
     "prettier": "^2.5.0",
     "ts-node": "^10.4.0",

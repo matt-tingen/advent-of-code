@@ -1,6 +1,4 @@
-import { getCell } from './getCell';
-import { east, north, south, west } from './move';
-import { Coords, Grid } from './types';
+import { cardinalMoves, Coords, getCell, Grid, moves } from '../../util/grid';
 
 export const findBasin = (grid: Grid, nadir: Coords) => {
   const basin: Coords[] = [];
@@ -33,7 +31,7 @@ const walk = (
   visited.add(i);
   basin.push(current);
 
-  [north, east, south, west].forEach((move) => {
+  cardinalMoves.forEach((move) => {
     walk(grid, move(current), value, visited, basin);
   });
 };
