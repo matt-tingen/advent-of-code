@@ -47,3 +47,5 @@ exports[`Challenge 11b 1`] = `354`;
 exports[`Challenge 12a 1`] = `4167`;
 
 exports[`Challenge 12b 1`] = `98441`;
+
+exports[`Challenge 13a 1`] = `664`;
