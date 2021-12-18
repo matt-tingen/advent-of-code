@@ -8,7 +8,7 @@
     "solve": "ts-node src/index.ts",
     "test": "jest",
     "lint": "eslint src",
-    "checks": "yarn tsc && yarn lint && yarn test"
+    "checks": "yarn tsc && yarn lint --max-warnings 0 && yarn test"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
