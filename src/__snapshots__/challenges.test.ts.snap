@@ -62,3 +62,5 @@ exports[`Challenge 13b 1`] = `
 exports[`Challenge 14a 1`] = `3230`;
 
 exports[`Challenge 14b 1`] = `3542388214529`;
+
+exports[`Challenge 15a 1`] = `824`;
