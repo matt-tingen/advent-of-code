@@ -1,4 +1,4 @@
-import { minBy } from 'lodash';
+import Heap from 'heap';
 import { DefaultMap } from './DefaultMap';
 
 const reconstructPath = <N>(cameFrom: Map<N, N>, goal: N) => {
@@ -31,21 +31,19 @@ export const findCheapestPath = <N>(
   getEdgeCost: (from: N, to: N) => number,
 ) => {
   // Based on https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
-  const openSet = new Set<N>([start]);
   const cameFrom = new Map<N, N>();
   const gScore = new DefaultMap<N, number>(Infinity, [[start, 0]]);
   const fScore = new DefaultMap<N, number>(Infinity, [
     [start, estimateCost(start)],
   ]);
+  const openSet = new Heap<N>((a, b) => fScore.get(a) - fScore.get(b));
 
-  while (openSet.size) {
-    const current = minBy(Array.from(openSet.values()), (node) =>
-      fScore.get(node),
-    )!;
+  openSet.push(start);
+
+  while (!openSet.empty()) {
+    const current = openSet.pop();
 
     if (current === goal) return reconstructPath(cameFrom, current);
-
-    openSet.delete(current);
 
     getNeighbors(current).forEach((neighbor) => {
       const tentativeGScore =
@@ -55,7 +53,7 @@ export const findCheapestPath = <N>(
         cameFrom.set(neighbor, current);
         gScore.set(neighbor, tentativeGScore);
         fScore.set(neighbor, tentativeGScore + estimateCost(neighbor));
-        openSet.add(neighbor);
+        openSet.push(neighbor);
       }
     });
   }
