@@ -1,5 +1,6 @@
 import { flow, partialRight, unary } from 'lodash';
 import { map } from 'lodash/fp';
+import { BitStream } from './BitStream';
 
 export const parseDecimalInt = unary(partialRight(parseInt, 10));
 export const parseBinaryInt = unary(partialRight(parseInt, 2));
@@ -18,3 +19,4 @@ export const parseDigitGrid = flow(
   parseStringLines,
   map((line) => line.split('').map(parseDecimalInt)),
 );
+export const parseBitStream = (hex: string) => new BitStream(hex);
