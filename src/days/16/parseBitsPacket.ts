@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise */
 import { range } from 'lodash';
 import { BitStream } from '../../util/BitStream';
 
@@ -7,32 +6,48 @@ interface BasePacket {
 }
 
 export interface ValuePacket extends BasePacket {
-  value: number;
+  value: bigint;
 }
 
 export interface OperatorPacket extends BasePacket {
+  operator: PacketOperator;
   subPackets: Packet[];
 }
 
 export type Packet = OperatorPacket | ValuePacket;
+export type PacketOperator =
+  | 'sum'
+  | 'product'
+  | 'minimum'
+  | 'maximum'
+  | 'greaterThan'
+  | 'lessThan'
+  | 'equalTo';
+
+const operators: Record<number, PacketOperator> = {
+  0: 'sum',
+  1: 'product',
+  2: 'minimum',
+  3: 'maximum',
+  5: 'greaterThan',
+  6: 'lessThan',
+  7: 'equalTo',
+};
 
 export const parseBitsPacket = (stream: BitStream): Packet => {
   const version = stream.takeInt(3);
   const typeId = stream.takeInt(3);
 
-  switch (typeId) {
-    case 4:
-      return {
+  return typeId === 4
+    ? {
         version,
         value: parseLiteralValue(stream),
-      };
-
-    default:
-      return {
+      }
+    : {
         version,
+        operator: operators[typeId],
         subPackets: parseSubPackets(stream),
       };
-  }
 };
 
 const parseLiteralValue = (stream: BitStream) => {
@@ -45,7 +60,12 @@ const parseLiteralValue = (stream: BitStream) => {
     chunks.unshift(stream.takeInt(4));
   }
 
-  return chunks.reduce((value, chunk, i) => value + (chunk << (i * 4)), 0);
+  const value = chunks.reduce(
+    (value, chunk, i) => value + BigInt(chunk) * 2n ** (BigInt(i) * 4n),
+    0n,
+  );
+
+  return value;
 };
 
 const parseSubPackets = (stream: BitStream) => {
@@ -64,6 +84,9 @@ const parseBitLengthSubPackets = (stream: BitStream) => {
   while (stream.index < end) {
     subPackets.push(parseBitsPacket(stream));
   }
+
+  if (stream.index !== end)
+    throw new Error('Sub-packets length exceeded prescribed size');
 
   return subPackets;
 };

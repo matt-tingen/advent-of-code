@@ -1,9 +1,14 @@
 /* eslint-disable no-bitwise */
 import { chunk } from 'lodash';
 
-export const binToHex = (bin: string) => {
+export const binToHex = (bin: string, padEnd = false) => {
   const hexChars: string[] = [];
-  const paddedBin = bin.padStart(bin.length + (4 - (bin.length % 4 || 4)), '0');
+  const pad = padEnd ? bin.padEnd : bin.padStart;
+  const paddedBin = pad.call(
+    bin,
+    bin.length + (4 - (bin.length % 4 || 4)),
+    '0',
+  );
 
   chunk(paddedBin, 4).forEach((bits) => {
     let int = 0;
