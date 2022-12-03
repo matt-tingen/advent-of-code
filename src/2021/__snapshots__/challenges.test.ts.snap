@@ -1,56 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Challenge 1a 1`] = `1722`;
+exports[`Challenge 2021 1a 1`] = `1722`;
 
-exports[`Challenge 1b 1`] = `1748`;
+exports[`Challenge 2021 1b 1`] = `1748`;
 
-exports[`Challenge 2a 1`] = `1989014`;
+exports[`Challenge 2021 2a 1`] = `1989014`;
 
-exports[`Challenge 2a 2`] = `1989014`;
+exports[`Challenge 2021 2a 2`] = `1989014`;
 
-exports[`Challenge 2b 1`] = `2006917119`;
+exports[`Challenge 2021 2b 1`] = `2006917119`;
 
-exports[`Challenge 3a 1`] = `3985686`;
+exports[`Challenge 2021 3a 1`] = `3985686`;
 
-exports[`Challenge 4a 1`] = `51776`;
+exports[`Challenge 2021 4a 1`] = `51776`;
 
-exports[`Challenge 4b 1`] = `16830`;
+exports[`Challenge 2021 4b 1`] = `16830`;
 
-exports[`Challenge 5a 1`] = `6461`;
+exports[`Challenge 2021 5a 1`] = `6461`;
 
-exports[`Challenge 5b 1`] = `18065`;
+exports[`Challenge 2021 5b 1`] = `18065`;
 
-exports[`Challenge 6a 1`] = `391671`;
+exports[`Challenge 2021 6a 1`] = `391671`;
 
-exports[`Challenge 6b 1`] = `1754000560399`;
+exports[`Challenge 2021 6b 1`] = `1754000560399`;
 
-exports[`Challenge 7a 1`] = `355989`;
+exports[`Challenge 2021 7a 1`] = `355989`;
 
-exports[`Challenge 7b 1`] = `102245489`;
+exports[`Challenge 2021 7b 1`] = `102245489`;
 
-exports[`Challenge 8a 1`] = `495`;
+exports[`Challenge 2021 8a 1`] = `495`;
 
-exports[`Challenge 8b 1`] = `1055164`;
+exports[`Challenge 2021 8b 1`] = `1055164`;
 
-exports[`Challenge 9a 1`] = `518`;
+exports[`Challenge 2021 9a 1`] = `518`;
 
-exports[`Challenge 9b 1`] = `949905`;
+exports[`Challenge 2021 9b 1`] = `949905`;
 
-exports[`Challenge 10a 1`] = `469755`;
+exports[`Challenge 2021 10a 1`] = `469755`;
 
-exports[`Challenge 10b 1`] = `2762335572`;
+exports[`Challenge 2021 10b 1`] = `2762335572`;
 
-exports[`Challenge 11a 1`] = `1785`;
+exports[`Challenge 2021 11a 1`] = `1785`;
 
-exports[`Challenge 11b 1`] = `354`;
+exports[`Challenge 2021 11b 1`] = `354`;
 
-exports[`Challenge 12a 1`] = `4167`;
+exports[`Challenge 2021 12a 1`] = `4167`;
 
-exports[`Challenge 12b 1`] = `98441`;
+exports[`Challenge 2021 12b 1`] = `98441`;
 
-exports[`Challenge 13a 1`] = `664`;
+exports[`Challenge 2021 13a 1`] = `664`;
 
-exports[`Challenge 13b 1`] = `
+exports[`Challenge 2021 13b 1`] = `
 "####.####...##.#..#.####.#....###..#...
 #....#.......#.#.#.....#.#....#..#.#...
 ###..###.....#.##.....#..#....###..#...
@@ -59,18 +59,18 @@ exports[`Challenge 13b 1`] = `
 ####.#.....##..#..#.####.####.###..####"
 `;
 
-exports[`Challenge 14a 1`] = `3230`;
+exports[`Challenge 2021 14a 1`] = `3230`;
 
-exports[`Challenge 14b 1`] = `3542388214529`;
+exports[`Challenge 2021 14b 1`] = `3542388214529`;
 
-exports[`Challenge 15a 1`] = `824`;
+exports[`Challenge 2021 15a 1`] = `824`;
 
-exports[`Challenge 15b 1`] = `3063`;
+exports[`Challenge 2021 15b 1`] = `3063`;
 
-exports[`Challenge 16a 1`] = `984`;
+exports[`Challenge 2021 16a 1`] = `984`;
 
-exports[`Challenge 16b 1`] = `1015320896946n`;
+exports[`Challenge 2021 16b 1`] = `1015320896946n`;
 
-exports[`Challenge 17a 1`] = `6786`;
+exports[`Challenge 2021 17a 1`] = `6786`;
 
-exports[`Challenge 17b 1`] = `2313`;
+exports[`Challenge 2021 17b 1`] = `2313`;

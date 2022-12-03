@@ -1,14 +1,6 @@
-import { getSolver } from '~/run';
+import { createChallengeMacro } from '~/createChallengeMacro';
 
-const testChallenge = createMacro(
-  async (day: number, part: 'a' | 'b') => {
-    const solver = await getSolver(2021, day, part);
-    const result = await solver();
-
-    expect(result).toMatchSnapshot();
-  },
-  (provided, day, part) => provided || `Challenge ${day}${part}`,
-);
+const testChallenge = createChallengeMacro(2021);
 
 run(testChallenge, 1, 'a');
 run(testChallenge, 1, 'b');
