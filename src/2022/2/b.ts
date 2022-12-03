@@ -2,23 +2,23 @@ import { sumBy } from 'lodash';
 import { modulo } from '~/util/modulo';
 import { GameStrategy } from './types';
 
-export const a = (strategies: GameStrategy[]) =>
+export const b = (strategies: GameStrategy[]) =>
   sumBy(strategies, getStrategyScore);
 
 const aton = (char: string) => char.charCodeAt(0);
 const baseOpponentPlay = aton('A');
-const baseOwnPlay = aton('X');
+const baseOutcome = aton('X');
 
-const outcomeScores = [3, 6, 0];
+const outcomeScores = [0, 3, 6];
 
-const getStrategyScore = ([opponentPlay, ownPlay]: GameStrategy) => {
+const getStrategyScore = ([opponentPlay, outcomeChar]: GameStrategy) => {
   const opponentDiff = aton(opponentPlay) - baseOpponentPlay;
-  const ownDiff = aton(ownPlay) - baseOwnPlay;
 
-  const playScore = ownDiff + 1;
-
-  const outcome = modulo(ownDiff - opponentDiff, 3);
+  const outcome = aton(outcomeChar) - baseOutcome;
   const outcomeScore = outcomeScores[outcome];
+
+  const ownDiff = modulo(opponentDiff + outcome - 1, 3);
+  const playScore = ownDiff + 1;
 
   return playScore + outcomeScore;
 };
