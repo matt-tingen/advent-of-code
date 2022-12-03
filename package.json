@@ -6,7 +6,7 @@
   "author": "Matt Tingen <matt.tingen@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "solve": "ts-node src/index.ts",
+    "solve": "tsx src/index.ts",
     "test": "jest",
     "lint": "eslint src",
     "checks": "yarn tsc && yarn lint --max-warnings 0 && yarn test"
@@ -31,6 +31,7 @@
     "lodash": "^4.17.21",
     "prettier": "^2.5.0",
     "ts-node": "^10.4.0",
+    "tsx": "^3.12.1",
     "typescript": "^4.5.2"
   },
   "resolutions": {
