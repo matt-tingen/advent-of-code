@@ -1,8 +1,8 @@
-# [Advent of Code 2021](https://adventofcode.com/2021)
+# [Advent of Code](https://adventofcode.com/)
 
 ## File Structure
 
-For a given day `n`, create a folder `src/days/<n>` with the following files:
+For a given day `n`, create a folder `src/<year>/<n>` with the following files:
 
 - `input.txt` containing your user-specific puzzle input
 - `parse.ts` which has a single export of the type `(input: string) => T` where T is any type which makes the input easier to work with e.g. `number[]`
@@ -17,7 +17,7 @@ You may create any other helper files in the day's folder as necessary, includin
 
 To run tests, use `yarn test`.
 
-To run a particular puzzle, use `yarn solve [<n>[<a|b>]]` e.g. `yarn solve 1a`. If arguments are omitted, the latest available will be used based on what folders/files exist.
+To run a particular puzzle, use `yarn solve [year] [<n>[<a|b>]]` e.g. `yarn solve 1a`. If arguments are omitted, the latest available will be used based on what folders/files exist.
 The solution will be printed to the console and copied to the clipboard.
 
 Once you've completed a puzzle successfully, add it to `challenges.test.ts` and run `yarn checks` to create a snapshot test using your custom input.

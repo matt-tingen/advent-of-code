@@ -4,20 +4,26 @@ import { getLatestChallenge, getSolver } from './run';
 
 const specifierRegex = /^(\d+)([ab]?)$/;
 
-const processArgs = ([specifier]: string[]) => {
+const processArgs = (args: (string | undefined)[]) => {
+  const [a, b] = args;
+  const year = a?.length === 4 ? a : undefined;
+  const specifier = year ? b : a;
+
   const match = specifier && specifier.match(specifierRegex);
 
   if (specifier && !match) {
     throw new Error('Invalid specifier');
   }
 
-  return match ? match.slice(1) : [];
+  const [day, part] = match ? match.slice(1) : ([] as (string | undefined)[]);
+
+  return [year, day, part] as const;
 };
 
 const main = async () => {
   const args = processArgs(process.argv.slice(2));
-  const [day, part] = await getLatestChallenge(...args);
-  const solver = await getSolver(day, part);
+  const [year, day, part] = await getLatestChallenge(...args);
+  const solver = await getSolver(year, day, part);
 
   console.time('solve');
   const result = await solver();
@@ -25,7 +31,7 @@ const main = async () => {
   console.timeEnd('solve');
 
   await clipboard.write(result.toString());
-  console.log(`Result for day ${day}${part} (copied to clipboard)`);
+  console.log(`Result for ${year} ${day}${part} (copied to clipboard)`);
   console.log(result);
 };
 

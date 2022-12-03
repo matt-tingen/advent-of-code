@@ -7,7 +7,7 @@ import { MaybePromise } from './types';
 type Parser = (input: string) => unknown;
 type Solver = (input: unknown) => MaybePromise<string | number>;
 
-const DAYS_DIR = path.join(__dirname, 'days');
+const YEARS_DIR = __dirname;
 
 const getInput = async (dir: string) => {
   const buffer = await fs.readFile(path.join(dir, 'input.txt'));
@@ -58,16 +58,19 @@ const getDirectories = async (source: string) => {
     .map((dir) => path.basename(dir));
 };
 
-const getLatestDay = async () => {
-  const dirs = await getDirectories(DAYS_DIR);
+const getLatestDirNumerically = async (parentDir: string) => {
+  const dirs = await getDirectories(parentDir);
 
   if (!dirs.length) {
     throw new Error('No directories found');
   }
 
-  const dir = _.maxBy(dirs, _.unary(parseInt));
+  const numericDirs = dirs
+    .map(_.unary(parseInt))
+    .filter(_.negate(Number.isNaN));
+  const dir = _.maxBy(numericDirs);
 
-  return dir;
+  return dir?.toString();
 };
 
 const PART_FILENAMES = ['b.ts', 'a.ts'];
@@ -87,25 +90,41 @@ const getParsedInput = async (dayDir: string) => {
   return input;
 };
 
-export const getLatestChallenge = async (dayArg?: string, partArg?: string) => {
-  const day = dayArg || (await getLatestDay());
+export const getLatestChallenge = async (
+  yearArg?: string,
+  dayArg?: string,
+  partArg?: string,
+) => {
+  const year = yearArg || (await getLatestDirNumerically(YEARS_DIR));
+
+  if (!year) {
+    throw new Error('Missing year');
+  }
+
+  const yearDir = path.join(YEARS_DIR, year);
+  const day = dayArg || (await getLatestDirNumerically(yearDir));
 
   if (!day) {
     throw new Error('Missing day');
   }
 
-  const dayDir = path.join(DAYS_DIR, day);
+  const dayDir = path.join(yearDir, day);
   const part = partArg || (await getLatestPart(dayDir));
 
   if (!part) {
     throw new Error('Missing part');
   }
 
-  return [day, part] as [string, string];
+  return [year, day, part] as [string, string, string];
 };
 
-export const getSolver = async (day: string | number, part: string) => {
-  const dayDir = path.join(DAYS_DIR, day.toString());
+export const getSolver = async (
+  year: string | number,
+  day: string | number,
+  part: string,
+) => {
+  const yearDir = path.join(YEARS_DIR, year.toString());
+  const dayDir = path.join(yearDir, day.toString());
   const partPath = path.join(dayDir, part);
   const solve = getSoleExport(require(partPath)) as Solver;
   const input = await getParsedInput(dayDir);

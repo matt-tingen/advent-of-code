@@ -1,8 +1,8 @@
-import { getSolver } from './run';
+import { getSolver } from '../run';
 
 const testChallenge = createMacro(
   async (day: number, part: 'a' | 'b') => {
-    const solver = await getSolver(day, part);
+    const solver = await getSolver(2021, day, part);
     const result = await solver();
 
     expect(result).toMatchSnapshot();

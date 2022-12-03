@@ -1,5 +1,6 @@
 {
-  "name": "aoc-2021",
+  "name": "advent-of-code",
+  "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "author": "Matt Tingen <matt.tingen@gmail.com>",
