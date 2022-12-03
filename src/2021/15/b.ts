@@ -1,4 +1,4 @@
-import { Grid } from '../../util/grid';
+import { Grid } from '~/util/grid';
 import { findCheapestCavePath } from './findCheapestCavePath';
 import { tileCave } from './tileCave';
 

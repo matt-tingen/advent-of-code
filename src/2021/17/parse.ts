@@ -1,4 +1,4 @@
-import { parseDecimalInt } from '../../util/parsers';
+import { parseDecimalInt } from '~/util/parsers';
 
 export interface TargetArea {
   x: [number, number];

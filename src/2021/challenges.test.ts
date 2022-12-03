@@ -1,4 +1,4 @@
-import { getSolver } from '../run';
+import { getSolver } from '~/run';
 
 const testChallenge = createMacro(
   async (day: number, part: 'a' | 'b') => {

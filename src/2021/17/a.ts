@@ -1,5 +1,5 @@
 import { maxBy } from 'lodash';
-import { triangleNumber } from '../../util/triangleNumber';
+import { triangleNumber } from '~/util/triangleNumber';
 import { findTargetHits } from './findTargetHits';
 import { TargetArea } from './parse';
 

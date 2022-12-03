@@ -1,5 +1,5 @@
 import { range } from 'lodash';
-import { BitStream } from '../../util/BitStream';
+import { BitStream } from '~/util/BitStream';
 
 interface BasePacket {
   version: number;

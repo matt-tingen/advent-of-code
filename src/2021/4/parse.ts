@@ -1,5 +1,5 @@
 import { chunk } from 'lodash';
-import { parseDecimalInt } from '../../util/parsers';
+import { parseDecimalInt } from '~/util/parsers';
 
 export type BingoBoard = number[][];
 

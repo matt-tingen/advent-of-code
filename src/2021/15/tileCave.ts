@@ -1,6 +1,6 @@
 import { range } from 'lodash';
-import { Grid } from '../../util/grid';
-import { map2d } from '../../util/map2d';
+import { Grid } from '~/util/grid';
+import { map2d } from '~/util/map2d';
 
 export const tileCave = (cave: Grid) => {
   const wrap = (value: number) => (value > 9 ? value - 9 : value);

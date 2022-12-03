@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
-import { forEach2d } from '../../util/forEach2d';
-import { Coords, getCell, Grid, moves, setCell } from '../../util/grid';
+import { forEach2d } from '~/util/forEach2d';
+import { Coords, getCell, Grid, moves, setCell } from '~/util/grid';
 
 const FLASH_VALUE = -Infinity;
 

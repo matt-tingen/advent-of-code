@@ -1,1 +1,1 @@
-export { parseCsvInts } from '../../util/parsers';
+export { parseCsvInts } from '~/util/parsers';

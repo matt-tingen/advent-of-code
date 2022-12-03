@@ -1,6 +1,6 @@
-import { Coords, toDigitGridString } from '../../util/grid';
-import { isTruthy } from '../../util/isTruthy';
-import { map2d } from '../../util/map2d';
+import { Coords, toDigitGridString } from '~/util/grid';
+import { isTruthy } from '~/util/isTruthy';
+import { map2d } from '~/util/map2d';
 import { parseDigitGrid } from './parse';
 import { stepDumbos } from './stepDumbos';
 

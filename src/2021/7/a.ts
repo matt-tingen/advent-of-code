@@ -1,5 +1,5 @@
 import { sumBy } from 'lodash';
-import { median } from '../../util/median';
+import { median } from '~/util/median';
 
 export const a = (positions: number[]) => {
   const x = median(positions);

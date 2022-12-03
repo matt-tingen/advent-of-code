@@ -1,4 +1,4 @@
-import { Coords, Grid } from '../../util/grid';
+import { Coords, Grid } from '~/util/grid';
 import { stepDumbos } from './stepDumbos';
 
 export const b = (initialGrid: Grid) => {

@@ -1,4 +1,4 @@
-import { cardinalMoves, Coords, getCell, Grid } from '../../util/grid';
+import { cardinalMoves, Coords, getCell, Grid } from '~/util/grid';
 
 export const findBasin = (grid: Grid, nadir: Coords) => {
   const basin: Coords[] = [];

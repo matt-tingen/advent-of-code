@@ -1,5 +1,5 @@
-import { Immutable } from '../../util/Immutable';
-import { extractInts } from '../../util/parsers';
+import { Immutable } from '~/util/Immutable';
+import { extractInts } from '~/util/parsers';
 
 export type VentCoordinates = Immutable<[[number, number], [number, number]]>;
 

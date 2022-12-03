@@ -1,4 +1,4 @@
-import { BitStream } from '../../util/BitStream';
+import { BitStream } from '~/util/BitStream';
 import { a } from './a';
 
 const testA = createMacro(

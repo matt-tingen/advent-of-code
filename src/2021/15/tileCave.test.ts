@@ -1,4 +1,4 @@
-import { toDigitGridString } from '../../util/grid';
+import { toDigitGridString } from '~/util/grid';
 import { parseDigitGrid } from './parse';
 import { tileCave } from './tileCave';
 

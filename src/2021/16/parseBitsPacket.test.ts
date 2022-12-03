@@ -1,6 +1,6 @@
 import { repeat } from 'lodash';
-import { binToHex } from '../../util/binToHex';
-import { BitStream } from '../../util/BitStream';
+import { binToHex } from '~/util/binToHex';
+import { BitStream } from '~/util/BitStream';
 import { Packet, parseBitsPacket } from './parseBitsPacket';
 import { literal, op } from './testUtils';
 

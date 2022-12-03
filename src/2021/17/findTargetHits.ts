@@ -1,7 +1,4 @@
-import {
-  inverseTriangleNumber,
-  triangleNumber,
-} from '../../util/triangleNumber';
+import { inverseTriangleNumber, triangleNumber } from '~/util/triangleNumber';
 import { TargetArea } from './parse';
 
 type Vector = Pick<SimState, 'x' | 'y'>;

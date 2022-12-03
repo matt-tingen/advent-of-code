@@ -1,4 +1,4 @@
-import { parseDecimalInt } from '../../util/parsers';
+import { parseDecimalInt } from '~/util/parsers';
 import { Dot, Fold } from './foldTransparency';
 
 export interface FoldingInstructions {

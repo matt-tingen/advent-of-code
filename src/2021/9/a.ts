@@ -1,5 +1,5 @@
 import { sumBy } from 'lodash';
-import { getCell, Grid } from '../../util/grid';
+import { getCell, Grid } from '~/util/grid';
 import { findNadirs } from './findNadirs';
 
 export const a = (grid: Grid) => {

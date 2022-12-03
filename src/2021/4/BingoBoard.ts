@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { sum } from 'lodash';
-import { Immutable } from '../../util/Immutable';
-import { map2d } from '../../util/map2d';
+import { Immutable } from '~/util/Immutable';
+import { map2d } from '~/util/map2d';
 
 export class BingoBoard {
   private complete = false;

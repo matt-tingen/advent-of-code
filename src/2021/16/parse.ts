@@ -1,1 +1,1 @@
-export { parseBitStream } from '../../util/parsers';
+export { parseBitStream } from '~/util/parsers';

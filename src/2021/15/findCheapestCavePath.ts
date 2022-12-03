@@ -1,8 +1,8 @@
 import { sumBy } from 'lodash';
-import { findCheapestPath } from '../../util/findCheapestPath';
-import { cardinalMoves, Coords, getCell, Grid } from '../../util/grid';
-import { isTruthy } from '../../util/isTruthy';
-import { map2d } from '../../util/map2d';
+import { findCheapestPath } from '~/util/findCheapestPath';
+import { cardinalMoves, Coords, getCell, Grid } from '~/util/grid';
+import { isTruthy } from '~/util/isTruthy';
+import { map2d } from '~/util/map2d';
 
 interface Node {
   risk: number;

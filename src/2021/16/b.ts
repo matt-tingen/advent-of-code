@@ -1,4 +1,4 @@
-import { BitStream } from '../../util/BitStream';
+import { BitStream } from '~/util/BitStream';
 import { evaluatePacket } from './evaluatePacket';
 import { parseBitsPacket } from './parseBitsPacket';
 

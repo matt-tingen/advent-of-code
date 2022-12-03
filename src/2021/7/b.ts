@@ -1,6 +1,6 @@
 import { sumBy, uniq } from 'lodash';
-import { arithmaticMean } from '../../util/arithmaticMean';
-import { triangleNumber } from '../../util/triangleNumber';
+import { arithmaticMean } from '~/util/arithmaticMean';
+import { triangleNumber } from '~/util/triangleNumber';
 
 export const b = (positions: number[]) => {
   const mean = arithmaticMean(positions);

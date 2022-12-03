@@ -1,1 +1,1 @@
-export { parseDigitGrid } from '../../util/parsers';
+export { parseDigitGrid } from '~/util/parsers';
