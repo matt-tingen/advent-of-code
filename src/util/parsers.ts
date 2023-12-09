@@ -15,6 +15,10 @@ export const parseStringLines = (string: string) => string.split('\n');
 export const parseIntLines = flow(parseStringLines, map(parseDecimalInt));
 export const parseBinaryLines = flow(parseStringLines, map(parseBinaryInt));
 export const parseCsvInts = flow(parseCsv, map(parseDecimalInt));
+export const parseCharGrid = flow(
+  parseStringLines,
+  map((line) => line.split('')),
+);
 export const parseDigitGrid = flow(
   parseStringLines,
   map((line) => line.split('').map(parseDecimalInt)),

@@ -1,5 +1,5 @@
 export type Grid<T = number> = T[][];
-export type Coords = [row: number, col: number];
+export type Coords = readonly [row: number, col: number];
 
 type Move = (coords: Coords) => Coords;
 
