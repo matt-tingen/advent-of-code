@@ -44,7 +44,7 @@ const getLatestDirNumerically = async (parentDir: string) => {
   return dir?.toString();
 };
 
-const SOLUTIONS_FILENAME = 'index.ts';
+export const SOLUTIONS_FILENAME = 'index.ts';
 const PART_EXPORT_NAMES = ['b', 'a'];
 
 const getLatestPart = async (dayDir: string) => {
@@ -87,6 +87,25 @@ export const getLatestChallenge = async (
   }
 
   return [year, day, part] as [string, string, string];
+};
+
+const getNextDay = async () => {
+  const [yearString, dayString] = await getLatestChallenge();
+
+  const day = (parseInt(dayString, 10) + 1) % 25;
+  const year = parseInt(yearString, 10) + (day === 1 ? 1 : 0);
+
+  return [year, day] as const;
+};
+
+export const getNextSolutionsFilePath = async () => {
+  const [year, day] = await getNextDay();
+
+  const yearDir = path.join(YEARS_DIR, year.toString());
+  const dayDir = path.join(yearDir, day.toString());
+  const solutionsPath = path.join(dayDir, SOLUTIONS_FILENAME);
+
+  return solutionsPath;
 };
 
 export const getSolver = async (
