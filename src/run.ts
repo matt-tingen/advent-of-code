@@ -4,8 +4,7 @@ import path from 'path';
 import _ from 'lodash';
 import { MaybePromise } from './types';
 
-type Parser = (input: string) => unknown;
-type Solver = (input: unknown) => MaybePromise<string | number>;
+type Solver = (input: string) => MaybePromise<string | number>;
 
 const YEARS_DIR = __dirname;
 
@@ -13,34 +12,6 @@ const getInput = async (dir: string) => {
   const buffer = await fs.readFile(path.join(dir, 'input.txt'));
 
   return buffer.toString().trim();
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getSoleExport = (module: any) => {
-  const keys = Object.keys(module);
-
-  if (keys.length === 0) {
-    throw new Error('Expected a single export, found none');
-  }
-
-  if (keys.length > 1) {
-    throw new Error(`Expected a single export, found: ${keys.join(',')}`);
-  }
-
-  return module[keys[0]];
-};
-
-const getParser = (dir: string): ((input: string) => unknown) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let module: any;
-
-  try {
-    module = require(path.join(dir, 'parse.ts'));
-  } catch (e) {
-    return (input) => input;
-  }
-
-  return getSoleExport(module);
 };
 
 const isDirectory = async (source: string) => {
@@ -73,21 +44,21 @@ const getLatestDirNumerically = async (parentDir: string) => {
   return dir?.toString();
 };
 
-const PART_FILENAMES = ['b.ts', 'a.ts'];
+const SOLUTIONS_FILENAME = 'index.ts';
+const PART_EXPORT_NAMES = ['b', 'a'];
 
 const getLatestPart = async (dayDir: string) => {
-  const files = new Set(await fs.readdir(dayDir));
-  const filename = PART_FILENAMES.find((part) => files.has(part));
+  const filename = path.join(dayDir, SOLUTIONS_FILENAME);
 
-  return filename && path.basename(filename, '.ts');
-};
+  const solutions = require(filename) as unknown;
+  const solutionsExports = new Set(
+    (typeof solutions === 'object' && solutions && Object.keys(solutions)) ||
+      [],
+  );
 
-const getParsedInput = async (dayDir: string) => {
-  const inputString = await getInput(dayDir);
-  const parse = getParser(dayDir) as Parser;
-  const input = parse(inputString);
+  const latest = PART_EXPORT_NAMES.find((part) => solutionsExports.has(part));
 
-  return input;
+  return latest;
 };
 
 export const getLatestChallenge = async (
@@ -125,9 +96,11 @@ export const getSolver = async (
 ) => {
   const yearDir = path.join(YEARS_DIR, year.toString());
   const dayDir = path.join(yearDir, day.toString());
-  const partPath = path.join(dayDir, part);
-  const solve = getSoleExport(require(partPath)) as Solver;
-  const input = await getParsedInput(dayDir);
+  const solutionsPath = path.join(dayDir, SOLUTIONS_FILENAME);
+
+  const solve = require(solutionsPath)[part] as Solver;
+
+  const input = await getInput(dayDir);
 
   return () => solve(input);
 };
