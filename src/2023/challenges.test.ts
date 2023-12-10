@@ -10,3 +10,4 @@ run(testChallenge, 3, 'a');
 run(testChallenge, 3, 'b');
 run(testChallenge, 4, 'a');
 run(testChallenge, 4, 'b');
+run(testChallenge, 5, 'a');
