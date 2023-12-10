@@ -1,4 +1,4 @@
-import { flow, range, sumBy } from 'lodash';
+import { flow, memoize, range, sumBy } from 'lodash';
 import { toInt } from '~/util/toInt';
 import { parseStringLines } from '../1/parse';
 
@@ -32,20 +32,14 @@ export const a = flow(parse, (cards) =>
 export const b = flow(parse, (cards) => {
   const cardsWithIndex = cards.map((card, index) => ({ index, ...card }));
 
-  let cardCount = 0;
-  const pool = [...cardsWithIndex];
-
-  while (pool.length) {
-    cardCount++;
-    const card = pool.pop()!;
+  const getCardCount = memoize((card: Card & { index: number }): number => {
     const matches = getCardMatchCount(card);
-
-    pool.push(
-      ...range(card.index + 1, card.index + 1 + matches).map(
-        (i) => cardsWithIndex[i],
-      ),
+    const newCards = range(card.index + 1, card.index + 1 + matches).map(
+      (i) => cardsWithIndex[i],
     );
-  }
 
-  return cardCount;
+    return 1 + sumBy(newCards, getCardCount);
+  });
+
+  return sumBy(cardsWithIndex, getCardCount);
 });
