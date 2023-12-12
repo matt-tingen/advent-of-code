@@ -16,3 +16,4 @@ run(testChallenge, 6, 'a');
 run(testChallenge, 6, 'b');
 run(testChallenge, 7, 'a');
 run(testChallenge, 7, 'b');
+run(testChallenge, 8, 'a');
