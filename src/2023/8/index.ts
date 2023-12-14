@@ -1,4 +1,5 @@
 import { flow, keyBy } from 'lodash';
+import { leastCommonMultiple } from '~/util/leastCommonMultiple';
 
 const parse = (input: string) => {
   const [turns, nodeLines] = input.split('\n\n');
@@ -31,4 +32,26 @@ export const a = flow(parse, ({ turns, nodes }) => {
   }
 
   return turnIndex;
+});
+
+export const b = flow(parse, ({ turns, nodes }) => {
+  const nodesById = keyBy(nodes, (node) => node.id);
+
+  const startNodes = nodes.filter((node) => node.id.endsWith('A'));
+
+  const pathCycleLengths = startNodes.map((startNode) => {
+    let turnIndex = 0;
+    let node = startNode;
+
+    while (!node.id.endsWith('Z')) {
+      const turn = turns[turnIndex % turns.length];
+
+      node = nodesById[node[turn]];
+      turnIndex++;
+    }
+
+    return turnIndex;
+  });
+
+  return leastCommonMultiple(pathCycleLengths);
 });
