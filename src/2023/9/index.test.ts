@@ -1,5 +1,5 @@
 import dedent from 'dedent';
-import { a } from '.';
+import { a, b } from '.';
 
 const input = dedent`
   0 3 6 9 12 15
@@ -9,4 +9,8 @@ const input = dedent`
 
 it('solves provided a', () => {
   expect(a(input)).toBe(114);
+});
+
+it('solves provided b', () => {
+  expect(b(input)).toBe(2);
 });
