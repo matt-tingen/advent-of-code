@@ -18,6 +18,7 @@
     "@babel/preset-typescript": "^7.16.0",
     "@matt-tingen/eslint-config": "^0.5.1",
     "@matt-tingen/jest-macros": "^0.1.4",
+    "@matt-tingen/util": "^2.2.0",
     "@types/dedent": "^0.7.0",
     "@types/heap": "^0.2.28",
     "@types/jest": "^27.0.3",
