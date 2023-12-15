@@ -37,3 +37,5 @@ exports[`Challenge 2023 9a 1`] = `1789635132`;
 exports[`Challenge 2023 9b 1`] = `913`;
 
 exports[`Challenge 2023 10a 1`] = `6725`;
+
+exports[`Challenge 2023 10b 1`] = `383`;

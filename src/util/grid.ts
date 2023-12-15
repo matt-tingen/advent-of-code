@@ -1,7 +1,7 @@
 export type Grid<T = number> = T[][];
 export type Coords = readonly [row: number, col: number];
 
-type Move = (coords: Coords) => Coords;
+export type Move = (coords: Coords) => Coords;
 
 const makeMove =
   (deltaR: number, deltaC: number): Move =>
@@ -48,6 +48,13 @@ export const toDigitGridString = (grid: Grid<number>) => {
       .some((value) => !Number.isInteger(value) || value < 0 || value > 9)
   )
     throw new Error('Found non-digit');
+
+  return grid.map((row) => row.join('')).join('\n');
+};
+
+export const toCharGridString = (grid: Grid<string>) => {
+  if (grid.flat().some((value) => value.length !== 1))
+    throw new Error('Found non-char');
 
   return grid.map((row) => row.join('')).join('\n');
 };
