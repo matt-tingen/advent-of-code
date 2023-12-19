@@ -3,6 +3,10 @@ import { toInt } from './toInt';
 export type VectorString = `${number},${number}`;
 
 export class Vector {
+  static get Zero() {
+    return new Vector(0, 0);
+  }
+
   static fromString(string: VectorString) {
     const [x, y] = string.split(',').map(toInt);
 

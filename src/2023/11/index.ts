@@ -19,20 +19,34 @@ const solver = (factor: number) =>
     });
 
     const distanceBetween = (a: Vector, b: Vector) => {
-      const xDistance = sumBy(range(a.x, b.x), (x) =>
-        populatedXs.has(x) ? 1 : factor,
-      );
+      const xDistance =
+        (b.x > a.x ? 1 : -1) *
+        sumBy(range(a.x, b.x), (x) => (populatedXs.has(x) ? 1 : factor));
       const yDistance = sumBy(range(a.y, b.y), (y) =>
         populatedYs.has(y) ? 1 : factor,
       );
 
-      return xDistance + yDistance;
+      return new Vector(xDistance, yDistance);
     };
 
+    const neighborDistances = galaxies
+      .slice(0, -1)
+      .map((galaxy, i) => distanceBetween(galaxy, galaxies[i + 1]));
+
     return sum(
-      galaxies.map((g1, i) =>
-        sumBy(galaxies.slice(i + 1), (g2) => distanceBetween(g1, g2)),
-      ),
+      neighborDistances.map((_, startIndex) => {
+        let runningSum = Vector.Zero;
+        let totalDistance = 0;
+
+        for (let i = startIndex; i < neighborDistances.length; i++) {
+          const distance = neighborDistances[i];
+
+          runningSum = runningSum.add(distance);
+          totalDistance += Math.abs(runningSum.x) + Math.abs(runningSum.y);
+        }
+
+        return totalDistance;
+      }),
     );
   });
 
