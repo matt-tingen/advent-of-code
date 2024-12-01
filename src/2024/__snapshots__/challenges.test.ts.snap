@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Challenge 2024 1a 1`] = `1341714`;
+
+exports[`Challenge 2024 1b 1`] = `27384707`;
