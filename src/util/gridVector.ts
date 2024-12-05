@@ -1,3 +1,4 @@
+import { range } from 'lodash';
 import { Grid } from './grid';
 import { vec, Vector } from './vector';
 
@@ -20,6 +21,11 @@ export const moves = [
   west,
   northWest,
 ];
+
+export const getAllCoordinates = (grid: Grid<unknown>) =>
+  range(grid.length).flatMap((row) =>
+    range(grid[0].length).map((col) => vec(col, row)),
+  );
 
 export const getCell = <T>(grid: Grid<T>, vector: Vector) => {
   const { x, y } = vector;
