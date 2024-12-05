@@ -23,4 +23,8 @@ export const parseDigitGrid = flow(
   parseStringLines,
   map((line) => line.split('').map(parseDecimalInt)),
 );
+export const parseIntGrid = flow(
+  parseStringLines,
+  map((line) => line.split(' ').map(parseDecimalInt)),
+);
 export const parseBitStream = (hex: string) => new BitStream(hex);
