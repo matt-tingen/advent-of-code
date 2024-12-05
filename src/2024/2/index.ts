@@ -1,4 +1,4 @@
-import { flow } from 'lodash';
+import { flow, range } from 'lodash';
 import { parseIntGrid } from '~/util/parsers';
 
 const parse = parseIntGrid;
@@ -19,3 +19,12 @@ const isSafe = (level: number[]) => {
 };
 
 export const a = flow(parse, (levels) => levels.filter(isSafe).length);
+export const b = flow(
+  parse,
+  (levels) =>
+    levels.filter(
+      (level) =>
+        isSafe(level) ||
+        range(level.length).some((i) => isSafe(level.toSpliced(i, 1))),
+    ).length,
+);
